@@ -120,14 +120,15 @@ const adjustSample = () => {
     const prediction = predictGrades([newScores]);
     setPredictedGrade(Math.round(prediction[0]));
   };
-  
+  /*
   useEffect(() => {
     console.log(inputScores.length, questionCount)
     if (inputScores.length !== questionCount) {
       setInputScores(Array(questionCount).fill(0));
     }
   }, [questionCount]);
-  
+  */
+ 
   useEffect(() => {
     // Toggle button class every 500 ms if it needs retraining
     let interval;
