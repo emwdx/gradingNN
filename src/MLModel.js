@@ -4,20 +4,33 @@ import * as tf from '@tensorflow/tfjs';
 
 export const createModel = (inputShape) => {
   const model = tf.sequential();
-  model.add(tf.layers.dense({ inputShape: [inputShape], units: 128, activation: 'relu' }));
-  model.add(tf.layers.dense({ units: 64, activation: 'relu' }));
-  model.add(tf.layers.dense({ units: 1 }));  // No activation function
-
+  model.add(tf.layers.dense({
+    inputShape: [inputShape],
+    units: 40,
+    activation: 'relu',
+    kernel_regularizer: tf.regularizers.l2({l2: 0.01})  // Updated this line
+  }));
+  model.add(tf.layers.dense({
+    units: 20,
+    activation: 'relu',
+    kernel_regularizer: tf.regularizers.l2({l2: 0.01})  // Updated this line
+  }));
+  model.add(tf.layers.dense({
+    units: 1
+  }));
+  
+  const adam = tf.train.adam(0.001);
+  
   model.compile({
-    optimizer: 'adam',
-    loss: 'meanSquaredError',  // Regression loss function
+    optimizer: adam,
+    loss: 'meanSquaredError'
   });
 
   return model;
 };
 
 
-export const trainModel = async (model, xTrain, yTrain, onEpochEnd, setTrainingProgress, epochs = 500) => {
+export const trainModel = async (model, xTrain, yTrain, onEpochEnd, setTrainingProgress, epochs = 800) => {
   let previousLoss = null;
   let epochCount = 0;
 
@@ -33,7 +46,7 @@ export const trainModel = async (model, xTrain, yTrain, onEpochEnd, setTrainingP
           const lossChangeRate = Math.abs((logs.loss - previousLoss) / previousLoss);
           
           // Check for stopping conditions: either rate of loss change is low or max epochs reached
-          if (lossChangeRate < 0.001 || epochCount >= 500) {
+          if ((lossChangeRate < 0.0005 && epochCount > 200) || epochCount >= 800) {
             console.log("Stopping training due to small loss change rate or max epochs reached.");
             model.stopTraining = true;
             setTrainingProgress(100);  // Set progress bar to 100%
