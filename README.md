@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+## GradingNN: A Neural Network-Based Grading System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Table of Contents
 
-## Available Scripts
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Requirements](#requirements)
+4. [Installation](#installation)
+5. [Usage](#usage)
+    - [Configuration](#configuration)
+    - [Training](#training)
+    - [Testing](#testing)
+    - [Reports](#reports)
+6. [Technologies Used](#technologies-used)
+7. [Contributing](#contributing)
+8. [License](#license)
 
-In the project directory, you can run:
+### Overview
 
-### `npm start`
+GradingNN is a web-based application designed to assist educators in implementing a standards-based or competency-based grading system. The application leverages machine learning to automate the grading process, allowing teachers to focus more on instructional strategies. It aims to transition educators from traditional point-based grading to a more nuanced system that better reflects student comprehension.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Flexible Configuration**: Customize question labels and point values.
+- **Data Import**: Import sample training data from a spreadsheet.
+- **Trainable Model**: Train the machine learning model based on provided sample data.
+- **Interactive Testing**: Test the trained model using manual or randomized inputs.
+- **Batch Grading**: Grade multiple sets of answers at once.
+- **Adjustable Predictions**: Add corrected scores to the training set for better future predictions.
 
-### `npm test`
+### Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- TensorFlow.js
+- React.js
+- Bootstrap
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone this repository to your local machine.
+    ```bash
+    git clone https://github.com/yourusername/GradingNN.git
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Navigate into the directory.
+    ```bash
+    cd GradingNN
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install the required packages.
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+4. Start the development server.
+    ```bash
+    npm start
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Configuration
+**Page Text:** Use this page to set the number of questions, label each one, and assign points.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Set the number of questions for the assessment.
+2. Label each question according to its corresponding standard or level.
+3. Assign point values to each question.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Training
+**Page Text:** Paste your sample of training data here from the spreadsheet. Each row should represent a set of points earned on specific questions for the assessment, and the overall level you want to assign for this set of responses.
 
-## Learn More
+1. Import or paste sample data in the form of tab-separated values.
+2. Each row should represent a student's performance on an assessment.
+3. The last column should represent the overall grade or level for that set of answers.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Testing
+**Page Text:** Train the model using the provided sample data, and then test the model by inputting scores. If you disagree with the predicted score, use the adjust button to add the corrected score to the training set. Be sure to retrain to use this new data!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Click the "Train Model" button to train the machine learning model.
+2. Input scores to test the trained model's predictions.
+3. If you disagree with a prediction, use the "Adjust" button to correct it.
 
-### Code Splitting
+#### Reports
+**Page Text:** Use this page to batch grade multiple sets of answers. Paste the tab-separated values into the textarea. Optionally include a header row for easier identification. Click 'Grade Batch' to generate grades based on the model.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Paste multiple sets of scores in tab-separated format.
+2. Click the "Grade Batch" button to get the predicted grades.
+3. The results can be copied to the clipboard or downloaded as a CSV file.
 
-### Analyzing the Bundle Size
+### Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- React.js
+- TensorFlow.js
+- Bootstrap
+- Node.js
 
-### Making a Progressive Web App
+### Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to the project.
 
-### Advanced Configuration
+### License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
