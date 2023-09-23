@@ -16,7 +16,6 @@ function TrainAndTest({ model, setModel, preprocessData, setSampleData, sampleDa
 const [correctedGrade, setCorrectedGrade] = React.useState('');
 const [invalidInputs, setInvalidInputs] = React.useState([]);
 const [isModelReady, setIsModelReady] = React.useState(false); 
-const [shouldRetrain, setShouldRetrain] = React.useState(false);
 const [needsRetrain, setNeedsRetrain] = React.useState(false);
 const [buttonClass, setButtonClass] = React.useState('btn-primary');
 
@@ -86,12 +85,7 @@ const adjustSample = () => {
       setModel(newModel);
       setIsModelReady(true);
   
-      // Check if questionCount needs to be updated
-      /*
-      if (inputShape !== questionCount) {
-        setQuestionCount(inputShape);
-      }
-      */
+
       setTrainingProgress(100)
       
     };
@@ -146,6 +140,16 @@ const adjustSample = () => {
     // Cleanup interval when component unmounts or needsRetrain becomes false
     return () => clearInterval(interval);
 }, [needsRetrain]);
+
+useEffect(() => {
+  if (model) {
+    setIsModelReady(true);
+    setNeedsRetrain(false);
+  } else {
+    setIsModelReady(false);
+    setNeedsRetrain(true);
+  }
+}, [model]);
 
   return (
     <div>
